@@ -1,0 +1,65 @@
+<%- include('../partials/header') %>
+
+<main class="auth-page">
+  <div class="container">
+    <div class="auth-card">
+      <div id="loginForm" class="form <%= activeTab === 'signup' ? '' : 'active' %>">
+        <h2>Welcome back</h2>
+        <p>Sign in with the email and password you used to register.</p>
+
+        <form action="/auth/login" method="POST">
+          <div class="input-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" name="email" placeholder="you@example.com" autocomplete="username" required>
+          </div>
+          <div class="input-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" placeholder="••••••••" autocomplete="current-password" required>
+          </div>
+          <div class="forgot-password">
+            <span class="auth-muted">Password reset is not set up yet.</span>
+          </div>
+          <button type="submit" class="btn">Sign in</button>
+        </form>
+
+        <p class="toggle-text">No account? <button type="button" onclick="toggleForm()">Create one</button></p>
+      </div>
+
+      <div id="signupForm" class="form <%= activeTab === 'signup' ? 'active' : '' %>">
+        <h2>New account</h2>
+        <p>Choose a password of at least six characters. You will be signed in right after.</p>
+
+        <form action="/auth/register" method="POST">
+          <div class="input-group">
+            <label for="signupName">Name</label>
+            <input type="text" id="signupName" name="name" placeholder="How we should greet you" required maxlength="120">
+          </div>
+          <div class="input-group">
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+          <div class="input-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" name="password" placeholder="At least six characters" required minlength="6" autocomplete="new-password">
+          </div>
+          <div class="input-group">
+            <label for="signupConfirmPassword">Confirm</label>
+            <input type="password" id="signupConfirmPassword" name="confirmPassword" placeholder="Again" required minlength="6" autocomplete="new-password">
+          </div>
+          <button type="submit" class="btn">Create account</button>
+        </form>
+
+        <p class="toggle-text">Already set up? <button type="button" onclick="toggleForm()">Sign in</button></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  function toggleForm() {
+    document.getElementById('loginForm').classList.toggle('active');
+    document.getElementById('signupForm').classList.toggle('active');
+  }
+</script>
+
+<%- include('../partials/footer') %>

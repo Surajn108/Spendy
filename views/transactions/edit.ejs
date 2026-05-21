@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-page-end">
+  <header class="page-header">
+    <h1>Edit entry</h1>
+    <p class="page-lead">Adjust the line and save. The ledger updates in place.</p>
+  </header>
+
+  <div class="ledger-form-card">
+    <form action="/transactions/<%= txn._id %>/edit" method="POST">
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" name="title" id="title" value="<%= txn.title %>" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="amount">Amount (₹)</label>
+        <input class="form-control" type="number" name="amount" id="amount" step="0.01" min="0" value="<%= txn.amount %>" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="IorE">Direction</label>
+        <select class="form-select" name="IorE" id="IorE" required>
+          <option value="income" <%= txn.IorE === 'income' ? 'selected' : '' %>>Money in</option>
+          <option value="expense" <%= (txn.IorE === 'expense' || txn.IorE === 'expence') ? 'selected' : '' %>>Money out</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="category">Category</label>
+        <input class="form-control" type="text" name="category" id="category" value="<%= txn.category %>">
+      </div>
+      <div class="mb-4">
+        <label class="form-label" for="date">Date</label>
+        <input class="form-control" type="date" name="date" id="date" value="<%= txn.date ? txn.date.toISOString().split('T')[0] : '' %>">
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <button type="submit" class="btn-ledger btn-ledger--primary">Save changes</button>
+        <a class="btn-ledger btn-ledger--secondary" href="/transactions">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

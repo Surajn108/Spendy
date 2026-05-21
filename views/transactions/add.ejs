@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-page-end">
+  <header class="page-header">
+    <h1>New entry</h1>
+    <p class="page-lead">Log a single inflow or outflow. You can always edit the line later.</p>
+  </header>
+
+  <div class="ledger-form-card">
+    <form action="/transactions/add" method="POST">
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" name="title" id="title" placeholder="e.g. Groceries, salary" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="amount">Amount (₹)</label>
+        <input class="form-control" type="number" name="amount" id="amount" step="0.01" min="0" placeholder="0.00" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="IorE">Direction</label>
+        <select class="form-select" name="IorE" id="IorE" required>
+          <option value="" disabled selected>Choose one</option>
+          <option value="income">Money in</option>
+          <option value="expense">Money out</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="category">Category</label>
+        <input class="form-control" type="text" name="category" id="category" placeholder="Optional">
+      </div>
+      <div class="mb-4">
+        <label class="form-label" for="date">Date</label>
+        <input class="form-control" type="date" name="date" id="date">
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <button type="submit" class="btn-ledger btn-ledger--primary">Save entry</button>
+        <a class="btn-ledger btn-ledger--secondary" href="/transactions">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

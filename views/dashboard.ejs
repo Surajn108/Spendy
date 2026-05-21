@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <header class="page-header">
+    <h1>Overview</h1>
+    <p class="page-lead">What came in, what went out, and what is left — same numbers as before, easier to read.</p>
+  </header>
+
+  <ul class="stat-grid">
+    <li class="stat-card stat-card--income">
+      <p class="stat-card__label">Income</p>
+      <p class="stat-card__value">₹<%= income.toLocaleString('en-IN') %></p>
+    </li>
+    <li class="stat-card stat-card--expense">
+      <p class="stat-card__label">Spent</p>
+      <p class="stat-card__value">₹<%= expense.toLocaleString('en-IN') %></p>
+    </li>
+    <li class="stat-card stat-card--balance">
+      <p class="stat-card__label">Balance</p>
+      <p class="stat-card__value <%= balance < 0 ? 'is-negative' : '' %>">₹<%= balance.toLocaleString('en-IN') %></p>
+    </li>
+  </ul>
+
+  <div class="page-actions">
+    <a class="btn-ledger btn-ledger--primary" href="/transactions/add">New entry</a>
+    <a class="btn-ledger btn-ledger--secondary" href="/transactions">Open ledger</a>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
